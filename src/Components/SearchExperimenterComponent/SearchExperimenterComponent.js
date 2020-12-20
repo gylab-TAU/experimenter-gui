@@ -17,7 +17,7 @@ const names =  [
 class SearchExperimenterComponent extends Component{
     constructor(props){
         super(props);
-        this.state = {experimenterNames: names, original: names}
+        this.state = {experimenterNames: names}
     }
 
     render() {
