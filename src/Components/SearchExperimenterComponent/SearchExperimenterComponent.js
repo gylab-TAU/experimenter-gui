@@ -21,7 +21,6 @@ class SearchExperimenterComponent extends Component{
     }
 
     render() {
-        console.log(this.state.names)
         return (
             <div className="container">
                 <SearchComponent items={this.state.experimenterNames} text="choose experimenter" />

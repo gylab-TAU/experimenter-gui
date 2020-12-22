@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import SearchComponent from '../SearchComponent/SearchComponent';
+import { withRouter } from 'react-router-dom';
 
 const names =  [
     "exp1",
@@ -21,24 +22,22 @@ const names =  [
     "exp17",
     "exp18",
     "exp19",
-    "exp20"
+    "exp20",
 ];
 
-class SearchExperimentComponent extends Component{
-    constructor(props){
+class SearchExperimentComponent extends Component {
+    constructor(props) {
         super(props);
-        this.state = {experimentNames: names}
+        this.state = { experimenterName: this.props.match.params.experimenterName, experimentNames: names };
     }
 
     render() {
-        console.log(this.state.names)
         return (
             <div className="container">
-                <h1>{this.props.experimenterName}</h1>
+                <h1>{this.state.experimenterName}</h1>
                 <SearchComponent items={this.state.experimentNames} text="choose experiment" />
             </div>
         );
     }
 }
-
-export default SearchExperimentComponent;
+export default withRouter(SearchExperimentComponent);

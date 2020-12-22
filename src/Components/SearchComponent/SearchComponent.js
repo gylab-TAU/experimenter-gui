@@ -1,15 +1,11 @@
-import { TextField } from '@material-ui/core';
 import { Component } from 'react';
 import './SearchComponent.css';
+import { withRouter } from 'react-router-dom';
 
 class SearchComponent extends Component{
     constructor(props){
         super(props);
         this.state = {value:"", items: props.items, original: props.items}
-    }
-
-    updateValue = (event) => {
-        this.setState({value: event.target.value});
     }
 
     handlChange = (event) => {
@@ -26,10 +22,13 @@ class SearchComponent extends Component{
         this.setState({items: filtered});
     }
 
+    chooseExperimenter = (experimenterName) => {
+        this.props.history.push("/searchExperiment/" + experimenterName);
+    } 
+
     ItemList = (props) => {
-        console.log(props)
         const items = props.items;
-        const listItems = items.map((item) => <li className="list-item" key={item}>{item}</li>);
+        const listItems = items.map((item) => <li onClick={this.chooseExperimenter.bind(this, item)} className="list-item" key={item}>{item}</li>);
 
         return(<ul>{listItems}</ul>);
     }
@@ -45,4 +44,4 @@ class SearchComponent extends Component{
     }
 }
 
-export default SearchComponent;
+export default withRouter(SearchComponent);
