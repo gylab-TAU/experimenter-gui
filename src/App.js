@@ -3,7 +3,8 @@ import './App.css';
 import ToolbarComponent from './Components/ToolbarComponent/ToolbarComponent';
 import SearchExperimenterComponent from './Components/SearchExperimenterComponent/SearchExperimenterComponent';
 import SearchExperimentComponent from './Components/SearchExperimentComponent/SearchExperimentComponent';
-import {Route, Link, Switch} from 'react-router-dom';
+import ExperimentComponent from './Components/ExperimentComponent/ExperimentComponent'
+import {Route, Switch} from 'react-router-dom';
 class App extends Component {
   render() {
     return (
@@ -12,7 +13,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={SearchExperimenterComponent}/>
           <Route exact path="/searchExperiment/:experimenterName" component={SearchExperimentComponent} />
-        
+          <Route exact path="/searchExperiment/:experimenterName/:experimentName"  component={ExperimentComponent}/>
         </Switch>
       </div>
     );
