@@ -31,11 +31,15 @@ class SearchExperimentComponent extends Component {
         this.state = { experimenterName: this.props.match.params.experimenterName, experimentNames: names };
     }
 
+    chooseExperiment = (experimentName) => {
+        this.props.history.push("/searchExperiment/" + this.state.experimenterName + "/" + experimentName);
+    } 
+
     render() {
         return (
             <div className="container">
                 <h1>{this.state.experimenterName}</h1>
-                <SearchComponent items={this.state.experimentNames} text="choose experiment" />
+                <SearchComponent chooseItem={this.chooseExperiment} items={this.state.experimentNames} text="choose experiment" />
             </div>
         );
     }

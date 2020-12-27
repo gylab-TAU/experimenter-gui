@@ -20,10 +20,14 @@ class SearchExperimenterComponent extends Component{
         this.state = {experimenterNames: names}
     }
 
+    chooseExperimenter = (experimenterName) => {
+        this.props.history.push("/searchExperiment/" + experimenterName);
+    } 
+
     render() {
         return (
             <div className="container">
-                <SearchComponent items={this.state.experimenterNames} text="choose experimenter" />
+                <SearchComponent chooseItem={this.chooseExperimenter} items={this.state.experimenterNames} text="choose experimenter" />
             </div>
         );
     }

@@ -22,13 +22,13 @@ class SearchComponent extends Component{
         this.setState({items: filtered});
     }
 
-    chooseExperimenter = (experimenterName) => {
-        this.props.history.push("/searchExperiment/" + experimenterName);
-    } 
+    chooseItem = (item) => {
+        this.props.chooseItem(item);
+    }
 
     ItemList = (props) => {
         const items = props.items;
-        const listItems = items.map((item) => <li onClick={this.chooseExperimenter.bind(this, item)} className="list-item" key={item}>{item}</li>);
+        const listItems = items.map((item) => <li onClick={this.chooseItem.bind(this, item)} className="list-item" key={item}>{item}</li>);
 
         return(<ul>{listItems}</ul>);
     }
