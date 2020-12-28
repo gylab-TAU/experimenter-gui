@@ -1,3 +1,55 @@
 .download-button{
-    background-color: chartreuse;
+    height: 15px;
+    width: 8px;
+    border-radius: 2px;
+    display: flex;
+    align-self: center;
+}
+
+.chosen-participant {
+    background-color:blueviolet;
+    border-color: blueviolet;
+    height: 15px;
+    width: 8px;
+    border-radius: 2px;
+    display: flex;
+    align-self: center;
+}
+
+table{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-items:center;
+}
+
+tr {
+    display: flex;
+    min-width: 0;
+}
+
+td, th{
+    display: flex;
+    justify-content: space-around;
+    width: 150px;
+    align-items: center;
+}
+
+.id{
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.id:hover {
+   text-overflow: clip;
+   white-space: normal;
+   word-break: break-all;
+}
+
+h1, h2{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }

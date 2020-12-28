@@ -3,7 +3,7 @@ import "./ExperimentComponent.css"
 
 const stub = [
     {
-        id: "11111",
+        id: "11111111111",
         status: "complete"
     },
 
@@ -21,7 +21,7 @@ const stub = [
 class ExperimentComponent extends Component{
     constructor(props){
         super(props);
-        this.state = {participants: stub, ids: []};
+        this.state = {participants: stub, ids: [], chooseAll: false};
     }
 
     getTable = () => {
@@ -39,7 +39,7 @@ class ExperimentComponent extends Component{
 
     getHeaders = () => {
         return(
-            <tr>
+            <tr className="table-row">
                 <th>Download</th>
                 <th>ID</th>
                 <th>Completion Status</th>
@@ -71,12 +71,21 @@ class ExperimentComponent extends Component{
         this.setState({ids: newIds});
     }
 
+    chooseAll = () => {
+        if (this.state.chooseAll){
+            this.setState({ids:[], chooseAll:false});
+        } else {
+            let newIds = this.state.participants.map(item => item.id);
+            this.setState({ids: newIds, chooseAll: true});
+        }
+    }
+
     getTableLine = (participantData) => {
         let chosen = this.state.ids.includes(participantData.id);
         return(
-            <tr key={participantData.id}>
-                <td><button onClick={this.onClick.bind(this, participantData.id)} className={chosen ? "chosen-participant" : "download-button"}/></td>
-                <td>{participantData.id}</td>
+            <tr className="table-row" key={participantData.id}>
+                <td><button onClick={this.onClick.bind(this, participantData.id)} className={(chosen) ? "chosen-participant" : "download-button"}/></td>
+                <td> <div className="id">{participantData.id}</div></td>
                 <td>{participantData.status}</td>
             </tr>
         );
@@ -84,7 +93,12 @@ class ExperimentComponent extends Component{
 
     render(){
         return (
-            <div>
+            <div className="container">
+                <h1>Adva Shoham</h1>
+                <h2>exp1</h2>
+                <div>
+                  <button onClick={this.chooseAll.bind(this)}></button>  
+                </div>
                 <this.getTable></this.getTable>
             </div>
         );
