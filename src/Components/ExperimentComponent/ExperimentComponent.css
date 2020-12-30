@@ -91,3 +91,8 @@ label {
     width: 150px;
     cursor: pointer;
 }
+
+.experimenter-name:hover{
+    color: blueviolet;
+    cursor: pointer;
+}

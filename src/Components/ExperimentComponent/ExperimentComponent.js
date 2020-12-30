@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import "./ExperimentComponent.css"
+import { withRouter } from 'react-router-dom';
 
 const stub = [
     {
@@ -99,11 +100,16 @@ class ExperimentComponent extends Component{
         );
     }
 
+    goToExperimenterPage = () => {
+        this.props.history.goBack();
+        
+    }
+
     render(){
         return (
             <div className="container">
-                <h1>Adva Shoham</h1>
-                <h2>exp1</h2>
+                <h1 className="experimenter-name" onClick={this.goToExperimenterPage.bind(this)}>{this.props.match.params.experimenterName}</h1>
+                <h2>{this.props.match.params.experimentName}</h2>
                 <div className="experiment-body">
                 <div className="data-controls">
                     <div className="select-all">
@@ -130,4 +136,4 @@ class ExperimentComponent extends Component{
     }
 }
 
-export default ExperimentComponent;
+export default withRouter(ExperimentComponent);
