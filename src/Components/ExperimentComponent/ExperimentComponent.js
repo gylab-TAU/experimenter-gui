@@ -3,7 +3,7 @@ import "./ExperimentComponent.css"
 
 const stub = [
     {
-        id: "11111111111",
+        id: "11111111111111111111111111111111111111111111111111111111",
         status: "complete"
     },
 
@@ -58,11 +58,19 @@ class ExperimentComponent extends Component{
     }
 
     onClick = (id) => {
+        if (this.state.chooseAll){
+            this.setState({chooseAll: false});
+        }
+
         let newIds = this.state.ids;
 
         if (!this.state.ids.includes(id)){
             newIds.push(id);
             console.log(newIds)
+
+            if (newIds.length == this.state.participants.length){
+                this.setState({chooseAll: true});
+            }
         } else {
             newIds = newIds.filter(item => item != id);
             console.log(newIds)
@@ -96,10 +104,17 @@ class ExperimentComponent extends Component{
             <div className="container">
                 <h1>Adva Shoham</h1>
                 <h2>exp1</h2>
-                <div>
-                  <button onClick={this.chooseAll.bind(this)}></button>  
+                <div className="experiment-body">
+                <div className="data-controls">
+                    <div className="select-all">
+                  <button className={this.state.chooseAll ? "chosen-participant" : "download-button"} onClick={this.chooseAll.bind(this)}></button>  
+                  <label>{"Select all"}</label>
+                  </div>
+                  <button className="download-csv">{"Download Selected"}</button>
+                  <button className="download-csv">{"Download Selected Unified"}</button>
                 </div>
                 <this.getTable></this.getTable>
+                </div>
             </div>
         );
     }
