@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import "./ExperimentComponent.css"
 import { withRouter } from 'react-router-dom';
+import ExcelService from '../../Services/ExcelService';
 
 const stub = [
     {
@@ -105,6 +106,11 @@ class ExperimentComponent extends Component{
         
     }
 
+    download = () => {
+        let e = new ExcelService();
+        e.excelExport();
+    }
+
     render(){
         return (
             <div className="container">
@@ -116,7 +122,7 @@ class ExperimentComponent extends Component{
                   <button className={this.state.chooseAll ? "chosen-participant" : "download-button"} onClick={this.chooseAll.bind(this)}></button>  
                   <label>{"Select all"}</label>
                   </div>
-                  <button className="download-csv">{"Download Selected"}</button>
+                  <button onClick={this.download.bind(this)} className="download-csv">{"Download Selected"}</button>
                   <button className="download-csv">{"Download Selected Unified"}</button>
                 </div>
                 <div className="table-metadata">
