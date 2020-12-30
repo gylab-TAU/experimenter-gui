@@ -76,6 +76,12 @@ label {
     margin-top: 9px;
 }
 
+.table-metadata{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
 .download-csv{
     background-color:#1976d2;
     color: white;

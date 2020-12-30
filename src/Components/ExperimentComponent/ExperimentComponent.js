@@ -113,6 +113,16 @@ class ExperimentComponent extends Component{
                   <button className="download-csv">{"Download Selected"}</button>
                   <button className="download-csv">{"Download Selected Unified"}</button>
                 </div>
+                <div className="table-metadata">
+                    <div>
+                    <label>{"Number of participants:"}</label>
+                    <label>{this.state.participants.length}</label>
+                    </div>
+                    <div>
+                    <label>{"Selected:"}</label>
+                    <label>{this.state.ids.length}</label>
+                    </div>
+                    </div>
                 <this.getTable></this.getTable>
                 </div>
             </div>
