@@ -111,6 +111,11 @@ class ExperimentComponent extends Component{
         e.excelExport();
     }
 
+    unified = () => {
+        let e = new ExcelService();
+        e.zipExport();
+    }
+
     render(){
         return (
             <div className="container">
@@ -123,7 +128,7 @@ class ExperimentComponent extends Component{
                   <label>{"Select all"}</label>
                   </div>
                   <button onClick={this.download.bind(this)} className="download-csv">{"Download Selected"}</button>
-                  <button className="download-csv">{"Download Selected Unified"}</button>
+                  <button onClick={this.unified.bind(this)} className="download-csv">{"Download Selected Unified"}</button>
                 </div>
                 <div className="table-metadata">
                     <div>
