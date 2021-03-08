@@ -33,12 +33,12 @@ class SearchComponent extends Component{
         return(<ul>{listItems}</ul>);
     }
 
-    render(){
+    render(){    
         return (
-            <div className="container">
+            <div key={this.props.items} className="container">
                 <h2>{this.props.text}</h2>
                 <input className="textbox" type="text"  value={this.state.value} onChange={this.handlChange} placeholder={"Filter..."} />
-                <this.ItemList items={this.state.items}></this.ItemList>
+                <this.ItemList items={this.props.items}></this.ItemList>
             </div>
         )
     }

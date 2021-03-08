@@ -2,28 +2,23 @@ import { Component } from 'react';
 import "./ExperimentComponent.css"
 import { withRouter } from 'react-router-dom';
 import ExcelService from '../../Services/ExcelService';
-
-const stub = [
-    {
-        id: "11111111111111111111111111111111111111111111111111111111",
-        status: "complete"
-    },
-
-    {
-        id: "22222",
-        status: "partially complete"
-    },
-
-    {
-        id: "33333",
-        status: "not complete"
-    }
-]
+import DataService from '../../Services/DataService';
 
 class ExperimentComponent extends Component{
     constructor(props){
         super(props);
-        this.state = {participants: stub, ids: [], chooseAll: false};
+        this.state = {experimenterName: this.props.match.params.experimenterName, experimentName: this.props.match.params.experimentName , participants: [], ids: [], chooseAll: false};
+    }
+
+    async componentDidMount(){
+        await this.fetchParticipants();
+    }
+
+    fetchParticipants = async () => {
+        let dataService = new DataService();
+        let data = await dataService.getExperimentParticipants(this.state.experimenterName, this.state.experimentName);
+
+        this.setState({participants: data})
     }
 
     getTable = () => {
@@ -68,14 +63,12 @@ class ExperimentComponent extends Component{
 
         if (!this.state.ids.includes(id)){
             newIds.push(id);
-            console.log(newIds)
 
             if (newIds.length == this.state.participants.length){
                 this.setState({chooseAll: true});
             }
         } else {
             newIds = newIds.filter(item => item != id);
-            console.log(newIds)
         }
 
         this.setState({ids: newIds});
@@ -85,18 +78,20 @@ class ExperimentComponent extends Component{
         if (this.state.chooseAll){
             this.setState({ids:[], chooseAll:false});
         } else {
-            let newIds = this.state.participants.map(item => item.id);
+            let newIds = this.state.participants.map(item => item);
+            console.log("in chooseAll")
+            console.log(this.state)
             this.setState({ids: newIds, chooseAll: true});
         }
     }
 
     getTableLine = (participantData) => {
-        let chosen = this.state.ids.includes(participantData.id);
+        let chosen = this.state.ids.includes(participantData);
         return(
-            <tr className="table-row" key={participantData.id}>
-                <td><button onClick={this.onClick.bind(this, participantData.id)} className={(chosen) ? "chosen-participant" : "download-button"}/></td>
-                <td> <div className="id">{participantData.id}</div></td>
-                <td>{participantData.status}</td>
+            <tr className="table-row" key={participantData}>
+                <td><button onClick={this.onClick.bind(this, participantData)} className={(chosen) ? "chosen-participant" : "download-button"}/></td>
+                <td> <div className="id">{participantData}</div></td>
+                <td>Complete</td>
             </tr>
         );
     }
@@ -108,12 +103,12 @@ class ExperimentComponent extends Component{
 
     download = () => {
         let e = new ExcelService();
-        e.excelExport();
+        e.zipExport(this.state.experimentName, this.state.experimenterName, this.state.ids);
     }
 
     unified = () => {
         let e = new ExcelService();
-        e.zipExport();
+        e.excelExport(this.state.experimentName, this.state.experimenterName, this.state.ids);
     }
 
     render(){
