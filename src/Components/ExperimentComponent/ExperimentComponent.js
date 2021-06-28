@@ -39,7 +39,6 @@ class ExperimentComponent extends Component{
             <tr className="table-row">
                 <th>Download</th>
                 <th>ID</th>
-                <th>Completion Status</th>
             </tr>
         );
     }
@@ -91,7 +90,6 @@ class ExperimentComponent extends Component{
             <tr className="table-row" key={participantData}>
                 <td><button onClick={this.onClick.bind(this, participantData)} className={(chosen) ? "chosen-participant" : "download-button"}/></td>
                 <td> <div className="id">{participantData}</div></td>
-                <td>Complete</td>
             </tr>
         );
     }

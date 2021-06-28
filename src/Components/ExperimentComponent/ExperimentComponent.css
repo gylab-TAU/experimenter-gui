@@ -90,6 +90,7 @@ label {
     height: 35px;
     width: 150px;
     cursor: pointer;
+    margin-left: 10px;
 }
 
 .experimenter-name:hover{
