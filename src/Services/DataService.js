@@ -2,13 +2,13 @@ import axios from 'axios';
 
 class DataService {
     getExperimenters = async() => {
-        let data =  await axios.get("http://46.101.36.86:8080/getAllExperimenters");
+        let data =  await axios.get("http://178.62.106.190/saveResults/getAllExperimenters");
 
         return data.data;
     }
 
     getExperiments = async(experimenterName) => {
-        let data =  await axios.get("http://46.101.36.86:8080/getExperimenterFolder/" + experimenterName);
+        let data =  await axios.get("http://178.62.106.190/saveResults/getExperimenterFolder/" + experimenterName);
 
         return data.data;
     }
@@ -40,7 +40,7 @@ class DataService {
     }
 
     getExperimentResultsAsUnifiedFile = async(experimenterName, experimentName, ids) => { 
-        let data = await axios.post("http://46.101.36.86:8080/getUnifiedParticipantsData/" + experimenterName + "/" + experimentName, {
+        let data = await axios.post("http://178.62.106.190/saveResults/getUnifiedParticipantsData/" + experimenterName + "/" + experimentName, {
             participant_ids: ids
         });
 
@@ -48,7 +48,7 @@ class DataService {
     }
 
     getExcelDataForEachParticipant = async(experimenterName, experimentName, ids) => {
-        let data = await axios.post("http://46.101.36.86:8080/getParticipsntsDataForExcel/" + experimenterName + "/" + experimentName, {
+        let data = await axios.post("http://178.62.106.190/saveResults/getParticipsntsDataForExcel/" + experimenterName + "/" + experimentName, {
             participant_ids: ids
         });
 
