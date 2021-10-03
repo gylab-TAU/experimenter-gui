@@ -13,8 +13,13 @@ class ExcelService {
         let excelRows = await dataService.getExperimentResultsAsUnifiedFile(experimenterName, experimentName, ids);
 
         let sheet = workbook.addWorksheet('My Sheet');
+        
+        console.log(excelRows)
 
-        sheet.columns = excelRows.data.headers;
+        if (excelRows.data.headers.length > 2){
+            sheet.columns = excelRows.data.headers;
+        }
+
         sheet.addRows(excelRows.data.lines);
 
         workbook.csv.writeBuffer().then((buffer) => {
@@ -38,7 +43,10 @@ class ExcelService {
 
             let sheet = workbook.addWorksheet(excel.participant_id);
 
-            sheet.columns = excel.participant_excel_data.headers;
+            if (excel.participant_excel_data.headers.length > 2){
+                sheet.columns = excel.participant_excel_data.headers;
+            }
+
             sheet.addRows(excel.participant_excel_data.lines);
 
             let buffer = await workbook.csv.writeBuffer();
