@@ -97,3 +97,7 @@ label {
     color: blueviolet;
     cursor: pointer;
 }
+
+.hide-duplicates-button {
+    display: none;
+}

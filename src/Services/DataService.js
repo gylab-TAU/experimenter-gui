@@ -29,14 +29,16 @@ class DataService {
         let experiments = await this.getExperiments(experimenterName);
 
         let participants = null;
+        let duplicates = null;
 
         experiments.forEach(experiment => {
             if (experiment.name == experimentName){
                 participants = experiment.participants;
+                duplicates = experiment.duplicates;                                                                                                                                                                                                                                                                                                                                           
             }
         });
 
-        return participants;
+        return {participants: participants, duplicates: duplicates};
     }
 
     getExperimentResultsAsUnifiedFile = async(experimenterName, experimentName, ids) => { 

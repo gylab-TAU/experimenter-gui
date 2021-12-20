@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "node ./server.js",
-    "build": "export NODE_OPTIONS='--max-old-space-size=8192' && react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
